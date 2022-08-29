@@ -1,4 +1,4 @@
-<img src="Novo_Projeto_13.png" width="500px">
+<img src="imagens/Novo_Projeto_13.png" width="500px">
 
 # To travel
   Uma Aplicação Web voltada para o turismo, com foco em viagens em grupo.
