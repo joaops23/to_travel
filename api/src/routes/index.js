@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/api', (req,res) => {
+router.patch('/api', (req,res) => {
     res.status(200).send({
         success: 'true',
-        message: "Teste inicial da aplicação nodeJs + Expressjs",
+        message: "Aplicação feita para o projeto integrador do curso de SI, 4° semestre - FAM",
         version: "1.0.0",
     })
 });
