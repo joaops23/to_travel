@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router()
-
-
+const UserController = require("./../controllers/user.controller")
 /*
     Padrão para recebimento do body da requisição (adcionar ao readme)
 
@@ -18,9 +17,7 @@ const router = express.Router()
 */
 
 // Rota de login
-router.post('/api/user/login/', (req, res) => {
-    
-});
+router.post('/api/user/login/', UserController.insert );
 
 //Rota para resgatar dados cadastrais
 router.get('/api/user/:id', (req, res) => {
