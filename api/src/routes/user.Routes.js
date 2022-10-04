@@ -17,16 +17,14 @@ const UserController = require("./../controllers/user.controller")
 */
 
 // Rota de login
-router.post('/api/user/login/', UserController.insert );
+router.post('/api/user/login/', UserController.login );
 
 //Rota para resgatar dados cadastrais
 router.get('/api/user/:id', (req, res) => {
     
 });
 //Rota para inclusão de novo usuário
-router.post('/api/user/insert/', (req, res) => {
-    
-});
+router.post('/api/user/insert/', UserController.insert);
 //Rota para alteração de usuários 
 router.put('/api/user/alter/', (req, res) => {
     

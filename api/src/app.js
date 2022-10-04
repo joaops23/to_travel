@@ -18,8 +18,8 @@ app.use(express.json({type: 'application/vdn.api+json'}))
 //Integrando os endpoints
 app.use(index)
 app.use(userRoutes)
-app.use(hospRoutes)
-app.use(colabRoutes)
+//app.use(hospRoutes)
+//app.use(colabRoutes)
 
 //app.use('/api/', userController)
 
