@@ -18,11 +18,8 @@ const UserController = require("./../controllers/user.controller")
 
 // Rota de login
 router.post('/api/user/login/', UserController.login );
-
 //Rota para resgatar dados cadastrais
-router.get('/api/user/:id', (req, res) => {
-    
-});
+router.get('/api/user/:id?', UserController.getDate );
 //Rota para inclusão de novo usuário
 router.post('/api/user/insert/', UserController.insert);
 //Rota para alteração de usuários 

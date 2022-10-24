@@ -1,3 +1,4 @@
+const { query } = require('express')
 const db = require('./../config/database')
 
 
@@ -31,6 +32,7 @@ class UserController {
             response: response
         })
     }
+
     //método para cadastro
     insert = async (req, res) => {
         const {email_user, senha_user, nome_user, dt_nasc_user, CPF_user, celular_user, end_user, nr_end_user, UF_user, CEP_user} = req.body
@@ -44,7 +46,7 @@ class UserController {
         if(consulta.rowCount == 0){
 
             const response = await db.query(
-                "INSERT INTO cadastro_comum (email_user, senha_user, nome_user, data_nasc_user, CPF_user, celular_user, end_user, nr_end_user, UF_user, CEP_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", 
+                "INSERT INTO cadastro_comum (email_user, senha_user, nome_user, data_nasc_user, CPF_user, celular_user, end_user, nr_end_user, UF_user, CEP_user) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
                 [email_user, btoa(senha_user), nome, dt_nasc_user, CPF, celular, end_user, nr_end_user, UF_user, CEP],
             )
             
@@ -67,7 +69,7 @@ class UserController {
         })
     }
 
-// método para alteração do cadastro
+    // método para alteração do cadastro
     alter = async (req, res) => {
         const {email_user, senha_user, nome_user, dt_nasc_user, CPF_user, celular_user, end_user, nr_end_user, UF_user, CEP_user} = req.body
         
@@ -82,16 +84,50 @@ class UserController {
                 //desemcriptar a senha e validar, encriptar de novo e atualizar
 
             const response = await db.query(
-                "UPDATE cadastro_comum SET email_user = $1, senha_user = $2, nome_user = $3, data_nasc_user = $4, CPF_user = $5, celular_user = $6, end_user = $7, nr_end_user = $8, UF_user = $9, CEP_user = $10", 
+                "UPDATE cadastro_comum SET email_user = $1, senha_user = $2, nome_user = $3, data_nasc_user = $4, CPF_user = $5, celular_user = $6, end_user = $7, nr_end_user = $8, UF_user = $9, CEP_user = $10",
                 [email_user, btoa(senha_user), nome, dt_nasc_user, CPF, celular, end_user, nr_end_user, UF_user, CEP],
             )
+
+            var resp = "Usuário atualizado com sucesso!"
+
         } else {
             var resp = "Usuário não encontrado"
         }
+
+        
+        res.status(301).send({
+            message: "success",
+            response: resp,
+            email: resultado.email_user
+        })
+    }
+
+    // Método para listagem de cadastros (com ou sem id)
+    getDate = async(req, res) => {
+        const id = req.params.id
+
+        if(id.empty()){
+            const busca = await db.query("SELECT * FROM cadastro_comum")
+        } else {
+            const busca = await db.query("SELECT * FROM cadastro_comum WHERE id_cadastro = $1", [id])
+        }
+
+        if(busca.rowCount > 1){
+            let arr = []
+            busca.foreach(row => arr.push(row))
+        } else {
+            let arr = []
+            arr.push(busca.rows)
+        }
+
+        res.status(201).send({
+            message: "success",
+            response: arr,
+            email: resultado.email_user
+            //senha1: atob( btoa(senha_user)) desencriptar a senha atob(...)
+        })
     }
 }
-// Método para listagem de cadastros (com ou sem id)
-
 
 // método para método para resgate de dados do usuário 
 
