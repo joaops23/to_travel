@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.logo img{
+    width: 10em;
+    height: 2em;
+}
+
+.logo {
+    max-width: 50%;
+}
+
+.topo {
+    
+    box-sizing: border-box;
+}
+
+
+.menu {
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+}
