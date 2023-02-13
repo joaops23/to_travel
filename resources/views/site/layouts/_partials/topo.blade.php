@@ -33,6 +33,7 @@
                     Bem vindo {{Auth::user()->name }}
                   </a>
                   <ul class="dropdown-menu" style="width: 6 rem; fonty: 900; color: black;">
+                    <li><a class="dropdown-item" href="{{ Route('app.listHospedagem')}}">Hospedagens</a></li>
                     <li><a class="dropdown-item" href="{{ Route('logout')}}">Sair</a></li>
                   </ul>
             </li>
