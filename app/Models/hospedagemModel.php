@@ -12,4 +12,7 @@ class hospedagemModel extends Model
     protected $table = 'hospedagens';
     protected $primaryKey = 'id';
 
+    protected $fillable = [];
+    protected $guarded = ['id'];
+
 }

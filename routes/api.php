@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Auth\Middleware\Authenticate;
+use App\Http\Controllers\hospedagemController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route::post('auth.login', [AuthController::class, 'login'])->name('login');
+
+Route::post('cadHosp', [hospedagemController::class, 'cadastro'])->name('cadHosp');
+Route::get("getHospedagem/{id}", [hospedagemController::class, 'getHospedagem'])->name('getHospedagem');
