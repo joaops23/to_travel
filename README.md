@@ -7,4 +7,4 @@
   * Javascript
   * MySQL
   * Node
-  * Bootstrap
+  * Bootstrap 
